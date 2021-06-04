@@ -1,8 +1,8 @@
 <?php
 global $con, $dbname, $username, $servername, $password;
 $servername = 'localhost';
-$username = 'AuditAdmin';
-$password = 'nhr7V1un4zclvl95';
+$username = 'root';
+$password = '';
 $dbname = 'audit_admin';
 $con = new mysqli($servername, $username, $password, $dbname);
 
