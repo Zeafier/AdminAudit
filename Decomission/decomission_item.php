@@ -415,13 +415,13 @@ $remove -> remove($con);
 function myRemove(input){
     if (confirm('Do you really want to delete?')) {
       // Save it!
-      window.location = "http://"+window.location.hostname+"/Decomission/decomission_item.php?uid="+input+"";
+      window.location = "http://localhost/AdminAudit/Decomission/decomission_item.php?uid="+input+"";
     } else {
       // Do nothing!
     }
 }
 function myFunction(input){
-    window.location = "http://"+window.location.hostname+"/Decomission/edit_decom.php?uid="+input+"";
+    window.location = "http://localhost/AdminAudit/Decomission/edit_decom.php?uid="+input+"";
 }
 </script> 
 <script>

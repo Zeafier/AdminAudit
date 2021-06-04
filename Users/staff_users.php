@@ -388,12 +388,12 @@ $staffupdate -> activate($con);
 <!-- navigation between pages -->
 <script>
     function myEdit(input){
-        window.location = "http://"+window.location.hostname+"/Users/edit_staff.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Users/edit_staff.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('Are you sure you want to remove staff member?')) {
       // Proceed if remove button is confirmed
-            window.location = "http://"+window.location.hostname+"/Users/staff_users.php?uid="+input+"";
+            window.location = "http://localhost/AdminAudit/Users/staff_users.php?uid="+input+"";
         }else{
             
         }

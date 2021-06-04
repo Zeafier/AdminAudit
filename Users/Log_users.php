@@ -452,24 +452,24 @@ if(isset($_GET['rid']) && !empty($_SESSION['login']) && $_SESSION['isadmin'] == 
 </script>
 <script>
     function myEdit(input){
-        window.location = "http://"+window.location.hostname+"/Users/edit_user.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Users/edit_user.php?uid="+input+"";
     }
     function myDisEn(input, val){
         if (val == "disable"){
             if (confirm('Are you sure you want to disable this user?')) {
-                window.location = "http://"+window.location.hostname+"/Users/Log_users.php?uid="+input+"";
+                window.location = "http://localhost/AdminAudit/Users/Log_users.php?uid="+input+"";
             }
         }else{
-            window.location = "http://"+window.location.hostname+"/Users/Log_users.php?uid="+input+"";
+            window.location = "http://localhost/AdminAudit/Users/Log_users.php?uid="+input+"";
         }
     }
     function myPassword(input){
-        window.location = "http://"+window.location.hostname+"/Users/password_reset.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Users/password_reset.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('This actuion will remove user and all chats. Do you want to continue?')) {
       // Save it!
-            window.location = "http://"+window.location.hostname+"/Users/Log_users.php?rid="+input+"";
+            window.location = "http://localhost/AdminAudit/Users/Log_users.php?rid="+input+"";
         }else{
             
         }

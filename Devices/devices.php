@@ -395,13 +395,13 @@ if(isset($_GET['uid']) && !empty($_SESSION['login']) && $_SESSION['isadmin'] == 
 function myRemove(input){
     if (confirm('Do you really want to delete?')) {
       // Save it!
-      window.location = "http://"+window.location.hostname+"/Devices/device.php?uid="+input+"";
+      window.location = "http://localhost/AdminAudit/Devices/device.php?uid="+input+"";
     } else {
       // Do nothing!
     }
 }
 function myFunction(input){
-    window.location = "http://"+window.location.hostname+"/Devices/edit_item.php?uid="+input+"";
+    window.location = "http://localhost/AdminAudit/Devices/edit_item.php?uid="+input+"";
 }
 </script> 
 <script>

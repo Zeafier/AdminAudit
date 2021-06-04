@@ -391,12 +391,12 @@ if(isset($_GET['rid']) && !empty($_SESSION['login']) && $_SESSION['isadmin'] == 
 </script>
 <script>
     function myEdit(input){
-        window.location = "http://"+window.location.hostname+"/Users/edit_dep.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Users/edit_dep.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('Do you really want to delete?')) {
       // Save it!
-            window.location = "http://"+window.location.hostname+"/Users/dep_users.php?rid="+input+"";
+            window.location = "http://localhost/AdminAudit/Users/dep_users.php?rid="+input+"";
         }else{
             
         }

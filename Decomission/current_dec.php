@@ -407,7 +407,7 @@ if(isset($_GET['uid']) && !empty($_SESSION['login']) && $_SESSION['isadmin'] == 
 </script>
 <script>
 function myFunction(input){
-    window.location = "http://"+window.location.hostname+"/Decomission/current_dec.php?uid="+input+"";
+    window.location = "http://localhost/AdminAudit/Decomission/current_dec.php?uid="+input+"";
 }
 </script> 
 <script>

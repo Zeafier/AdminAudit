@@ -477,16 +477,16 @@ if(isset($_GET['uid']) && !empty($_SESSION['login'])){
 <script>
     function myEdit(input){
         
-        window.location = "http://"+window.location.hostname+"/Orders/edit_order.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Orders/edit_order.php?uid="+input+"";
     }
     function myComplete(input){
         
-        window.location = "http://"+window.location.hostname+"/Orders/current_orders.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Orders/current_orders.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('Do you really want to delete?')) {
       // Save it!
-            window.location = "http://"+window.location.hostname+"/Orders/current_orders.php?rid="+input+"";
+            window.location = "http://localhost/AdminAudit/Orders/current_orders.php?rid="+input+"";
         }else{
             
         }

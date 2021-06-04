@@ -410,12 +410,12 @@ if(isset($_GET['uid']) && !empty($_SESSION['login']) && $_SESSION['isadmin'] == 
 <script>
     function myEdit(input){
         
-        window.location = "http://"+window.location.hostname+"/Orders/edit_pricing.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Orders/edit_pricing.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('Do you really want to remove pricing?')) {
       // Save it!
-            window.location = "http://"+window.location.hostname+"/Orders/pricing.php?rid="+input+"";
+            window.location = "http://localhost/AdminAudit/Orders/pricing.php?rid="+input+"";
         }else{
             
         }

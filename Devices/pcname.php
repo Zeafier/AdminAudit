@@ -465,7 +465,7 @@ if(isset($_POST['remove']) && !empty($_SESSION['login']) && $_SESSION['isadmin']
 </script>
 <script>
     function myFunction(input){
-        window.location = "http://"+window.location.hostname+"/Devices/edit_name.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Devices/edit_name.php?uid="+input+"";
     }
 </script>
 <!-- Bootstrap 4 -->

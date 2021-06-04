@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 07:26 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.14
+-- Generation Time: Jun 04, 2021 at 07:43 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,10 +27,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `_brands_`
 --
 
-CREATE TABLE `_brands_` (
-  `_bID_` int(11) NOT NULL,
-  `_brand_name_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_brands_` (
+  `_bID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_brand_name_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_bID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_brands_`
@@ -49,19 +49,21 @@ INSERT INTO `_brands_` (`_bID_`, `_brand_name_`) VALUES
 -- Table structure for table `_chat_`
 --
 
-CREATE TABLE `_chat_` (
-  `_cID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_chat_` (
+  `_cID_` int(11) NOT NULL AUTO_INCREMENT,
   `_uID_` int(11) NOT NULL,
   `_text_` varchar(200) NOT NULL,
-  `_date_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_date_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_cID_`),
+  KEY `_uID_` (`_uID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_chat_`
 --
 
 INSERT INTO `_chat_` (`_cID_`, `_uID_`, `_text_`, `_date_`) VALUES
-(17, 4, '49bbfcf8e1ba038c7ca145d5ae03b452EKou30gEA52H2I0eyqxvibH241c=', '09/05/2020 04:20:05pm');
+(18, 10, 'ecd362025a6ba759189c01939bc7b33eToAJAak0cPsqBFwd', '04/06/2021 07:35:04pm');
 
 -- --------------------------------------------------------
 
@@ -69,10 +71,11 @@ INSERT INTO `_chat_` (`_cID_`, `_uID_`, `_text_`, `_date_`) VALUES
 -- Table structure for table `_classes_`
 --
 
-CREATE TABLE `_classes_` (
-  `_caID_` int(11) NOT NULL,
-  `_classes_` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_classes_` (
+  `_caID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_classes_` varchar(40) NOT NULL,
+  PRIMARY KEY (`_caID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_classes_`
@@ -99,9 +102,10 @@ INSERT INTO `_classes_` (`_caID_`, `_classes_`) VALUES
 -- Table structure for table `_company_`
 --
 
-CREATE TABLE `_company_` (
-  `_comID_` int(11) NOT NULL,
-  `_company_name_` varchar(50) NOT NULL
+CREATE TABLE IF NOT EXISTS `_company_` (
+  `_comID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_company_name_` varchar(50) NOT NULL,
+  PRIMARY KEY (`_comID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,15 +114,18 @@ CREATE TABLE `_company_` (
 -- Table structure for table `_decomission_`
 --
 
-CREATE TABLE `_decomission_` (
-  `_decID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_decomission_` (
+  `_decID_` int(11) NOT NULL AUTO_INCREMENT,
   `_item_id_` int(11) NOT NULL,
   `_SN_` varchar(100) NOT NULL,
   `_TAG_` varchar(100) NOT NULL,
   `_dec_visible_` int(11) NOT NULL,
   `_dec_qty_` int(11) NOT NULL,
-  `_day_added_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_day_added_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_decID_`),
+  KEY `_type_id_` (`_item_id_`),
+  KEY `_dec_qty_` (`_dec_qty_`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_decomission_`
@@ -132,8 +139,7 @@ INSERT INTO `_decomission_` (`_decID_`, `_item_id_`, `_SN_`, `_TAG_`, `_dec_visi
 (38, 4, '05e9c6e81f65f171b1c6fa9bc0312a9bQvuQ5+t30o+ml3v4W2w2', '31f71d0ec289cdba44b8b387ffe1b6302NDIKvRrG0WwIg==', 1, 9, ''),
 (39, 4, '05c8cc5325eb180d47e9ae1f8b4195080Vg7OXioaiTn', '4c2e9171aecad96db07cf5a61dbcdd17oai2DZ7mNg==', 1, 9, ''),
 (40, 4, '205acd802fad52b6852dfec349c80ee7lj6K00BV+NKVWKr4', 'f0e88daf8a013e7bd71c94d4ce60a167j5jJAQ==', 1, 9, ''),
-(41, 21, '2bea822095eca78b1edb77ff563ea91eehdqzwb9BXFl', '8b2785dd0fa161585ccad088fe6f296fLBxmZYc=', 1, 13, ''),
-(42, 21, '5541558691690939f60cf30a441479b9kHrlnGaNCI/j', '8b55cfb8bf8cdef27b7c78f775dc365fod9ANd92Vw==', 1, 13, '2020-05-09');
+(43, 21, '27c07f07c6dbd8e24a3d1c9a753783deOnp8PISjC+lL', 'd8396121e5d740145cc2b12941e4c169Ovem3j26ww==', 0, 13, '2020-05-09');
 
 -- --------------------------------------------------------
 
@@ -141,13 +147,18 @@ INSERT INTO `_decomission_` (`_decID_`, `_item_id_`, `_SN_`, `_TAG_`, `_dec_visi
 -- Table structure for table `_decomission_item_`
 --
 
-CREATE TABLE `_decomission_item_` (
-  `_di_ID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_decomission_item_` (
+  `_di_ID_` int(11) NOT NULL AUTO_INCREMENT,
   `_typy_ID_` int(11) NOT NULL,
   `_brand_ID_` int(11) NOT NULL,
   `_mode_id_` int(11) NOT NULL,
-  `_visible_` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_visible_` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`_di_ID_`),
+  UNIQUE KEY `_typy_ID_` (`_typy_ID_`,`_brand_ID_`,`_mode_id_`),
+  KEY `_typy_ID__2` (`_typy_ID_`,`_brand_ID_`,`_mode_id_`),
+  KEY `_brand_ID_` (`_brand_ID_`),
+  KEY `_mode_id_` (`_mode_id_`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_decomission_item_`
@@ -172,14 +183,17 @@ INSERT INTO `_decomission_item_` (`_di_ID_`, `_typy_ID_`, `_brand_ID_`, `_mode_i
 -- Table structure for table `_decom_quantity_`
 --
 
-CREATE TABLE `_decom_quantity_` (
-  `_dcID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_decom_quantity_` (
+  `_dcID_` int(11) NOT NULL AUTO_INCREMENT,
   `_quantity_` int(11) NOT NULL,
   `_past_present_` int(11) NOT NULL,
   `_decom_date_` varchar(25) NOT NULL,
   `_reason_id_` int(11) NOT NULL,
-  `_decom_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_decom_ID` int(11) NOT NULL,
+  PRIMARY KEY (`_dcID_`),
+  KEY `_reason_id_` (`_reason_id_`),
+  KEY `_type_id_` (`_decom_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_decom_quantity_`
@@ -188,7 +202,7 @@ CREATE TABLE `_decom_quantity_` (
 INSERT INTO `_decom_quantity_` (`_dcID_`, `_quantity_`, `_past_present_`, `_decom_date_`, `_reason_id_`, `_decom_ID`) VALUES
 (9, 7, 1, '12/03/2020', 5, 4),
 (10, 0, 1, '13/03/2020', 8, 1),
-(13, 2, 1, '04/05/2020', 1, 1);
+(13, 1, 0, '04/05/2020', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -196,11 +210,12 @@ INSERT INTO `_decom_quantity_` (`_dcID_`, `_quantity_`, `_past_present_`, `_deco
 -- Table structure for table `_departments_`
 --
 
-CREATE TABLE `_departments_` (
-  `_dID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_departments_` (
+  `_dID_` int(11) NOT NULL AUTO_INCREMENT,
   `_deparment_name_` varchar(30) NOT NULL,
-  `_visible_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_visible_` int(11) NOT NULL,
+  PRIMARY KEY (`_dID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_departments_`
@@ -212,7 +227,8 @@ INSERT INTO `_departments_` (`_dID_`, `_deparment_name_`, `_visible_`) VALUES
 (3, 'Technician', 1),
 (5, 'Humanities', 1),
 (6, 'Drama', 1),
-(7, 'Art', 1);
+(7, 'Art', 1),
+(8, 'Admin', 1);
 
 -- --------------------------------------------------------
 
@@ -220,23 +236,28 @@ INSERT INTO `_departments_` (`_dID_`, `_deparment_name_`, `_visible_`) VALUES
 -- Table structure for table `_devices_`
 --
 
-CREATE TABLE `_devices_` (
-  `_devID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_devices_` (
+  `_devID_` int(11) NOT NULL AUTO_INCREMENT,
   `_item_id_` int(11) NOT NULL,
   `_specs_id_` int(11) NOT NULL,
   `_SN_` varchar(100) NOT NULL,
   `_TAG_` varchar(100) NOT NULL,
   `_classes_id_` int(11) NOT NULL,
   `_faculty_id_` int(11) NOT NULL,
-  `_ut_id_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_ut_id_` int(11) NOT NULL,
+  PRIMARY KEY (`_devID_`),
+  KEY `_item_id_` (`_item_id_`,`_specs_id_`),
+  KEY `_specs_id_` (`_specs_id_`),
+  KEY `_classes_id_` (`_classes_id_`),
+  KEY `_faculty_id_` (`_faculty_id_`),
+  KEY `_ut_id_` (`_ut_id_`)
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_devices_`
 --
 
 INSERT INTO `_devices_` (`_devID_`, `_item_id_`, `_specs_id_`, `_SN_`, `_TAG_`, `_classes_id_`, `_faculty_id_`, `_ut_id_`) VALUES
-(15, 13, 2, 'c190f63f01f5720e3a7cc70db3cd806acIPbJvKXD0A63vrtXEFaUEff', 'e40aec75757c4c5d8af1dded9aab4b92XgFGc+bQcEXG', 4, 3, 1),
 (17, 13, 3, 'c356094dd4bcb77aaab975bd63f317a8rResgZuKHCByrrDjcAiI6xo=', '940105c4134ba68df4a034930d24ddd6O/gy/oh3vQ==', 6, 3, 1),
 (18, 13, 3, 'a0137e3b4f93f7dcac610362bd0986b2dZ6PZlNCmwUxz0CSPr4=', 'beccb86c8313e6832f421aeb1818b7b21o1lrp9a', 7, 3, 1),
 (19, 13, 3, '356fa6f4b4e00732794f6db8be7f7923V3Yjbay4ecHIdDHGyFGoNCzZoQ==', '4a389768ffb03a185ce723af5bf790b5BClMT45Jj0hqGA==', 8, 4, 2),
@@ -249,15 +270,20 @@ INSERT INTO `_devices_` (`_devID_`, `_item_id_`, `_specs_id_`, `_SN_`, `_TAG_`, 
 -- Table structure for table `_devices_names_`
 --
 
-CREATE TABLE `_devices_names_` (
-  `_dn_ID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_devices_names_` (
+  `_dn_ID_` int(11) NOT NULL AUTO_INCREMENT,
   `_devID_` int(11) NOT NULL,
   `_device_name_` varchar(100) NOT NULL,
   `_additional_` varchar(30) DEFAULT 'None',
   `_userID_` int(11) NOT NULL,
   `_facID_` int(11) NOT NULL,
-  `_locID_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_locID_` int(11) NOT NULL,
+  PRIMARY KEY (`_dn_ID_`),
+  KEY `_devID_` (`_devID_`),
+  KEY `_userID_` (`_userID_`),
+  KEY `_facID_` (`_facID_`),
+  KEY `_locID_` (`_locID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_devices_names_`
@@ -285,10 +311,11 @@ INSERT INTO `_devices_names_` (`_dn_ID_`, `_devID_`, `_device_name_`, `_addition
 -- Table structure for table `_faculty_`
 --
 
-CREATE TABLE `_faculty_` (
-  `_facID_` int(11) NOT NULL,
-  `_faculty_name_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_faculty_` (
+  `_facID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_faculty_name_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_facID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_faculty_`
@@ -305,10 +332,11 @@ INSERT INTO `_faculty_` (`_facID_`, `_faculty_name_`) VALUES
 -- Table structure for table `_model_`
 --
 
-CREATE TABLE `_model_` (
-  `_mID_` int(11) NOT NULL,
-  `_model_name_` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_model_` (
+  `_mID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_model_name_` varchar(50) NOT NULL,
+  PRIMARY KEY (`_mID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_model_`
@@ -334,10 +362,11 @@ INSERT INTO `_model_` (`_mID_`, `_model_name_`) VALUES
 -- Table structure for table `_name_`
 --
 
-CREATE TABLE `_name_` (
-  `_nID_` int(11) NOT NULL,
-  `_name_` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_name_` (
+  `_nID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_name_` varchar(45) NOT NULL,
+  PRIMARY KEY (`_nID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_name_`
@@ -360,7 +389,13 @@ INSERT INTO `_name_` (`_nID_`, `_name_`) VALUES
 (14, 'Vadimir'),
 (15, 'Super'),
 (16, 'TheLast'),
-(17, 'Mateus');
+(17, 'Mateus'),
+(18, 'admin'),
+(19, 'Sofia'),
+(20, 'Amanda'),
+(21, 'Sandy'),
+(22, 'Kasper'),
+(23, 'Invanovic');
 
 -- --------------------------------------------------------
 
@@ -368,23 +403,31 @@ INSERT INTO `_name_` (`_nID_`, `_name_`) VALUES
 -- Table structure for table `_orders_`
 --
 
-CREATE TABLE `_orders_` (
-  `_oID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_orders_` (
+  `_oID_` int(11) NOT NULL AUTO_INCREMENT,
   `_staff_id_` int(11) NOT NULL,
   `_item_id_` int(11) NOT NULL,
   `_quantity_` int(11) NOT NULL,
   `_total_price_` double NOT NULL,
   `_date_` varchar(30) NOT NULL,
   `_dep_id_` int(11) NOT NULL,
-  `_current_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_current_` int(11) NOT NULL,
+  PRIMARY KEY (`_oID_`),
+  KEY `_staff_id_` (`_staff_id_`),
+  KEY `_item_id_` (`_item_id_`),
+  KEY `_dep_id_` (`_dep_id_`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_orders_`
 --
 
 INSERT INTO `_orders_` (`_oID_`, `_staff_id_`, `_item_id_`, `_quantity_`, `_total_price_`, `_date_`, `_dep_id_`, `_current_`) VALUES
-(15, 13, 4, 1, 65.5, '2020-04-12', 1, 1);
+(16, 28, 5, 2, 210.3, '2021-06-01', 6, 0),
+(17, 32, 7, 2, 700, '2020-07-23', 8, 1),
+(18, 29, 6, 1, 300, '2021-02-25', 3, 1),
+(19, 33, 6, 1, 300, '2020-08-14', 8, 1),
+(20, 34, 7, 2, 700, '2021-04-23', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -392,21 +435,25 @@ INSERT INTO `_orders_` (`_oID_`, `_staff_id_`, `_item_id_`, `_quantity_`, `_tota
 -- Table structure for table `_order_item_`
 --
 
-CREATE TABLE `_order_item_` (
-  `_oiID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_order_item_` (
+  `_oiID_` int(11) NOT NULL AUTO_INCREMENT,
   `_si_ID_` int(11) NOT NULL,
   `_price_` double NOT NULL,
   `_QTY_` int(11) NOT NULL,
-  `_visible_` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_visible_` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`_oiID_`),
+  KEY `_type_ID_` (`_si_ID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_order_item_`
 --
 
 INSERT INTO `_order_item_` (`_oiID_`, `_si_ID_`, `_price_`, `_QTY_`, `_visible_`) VALUES
-(4, 9, 65.5, 4, 1),
-(5, 11, 105.15, 4, 1);
+(4, 9, 65.5, 5, 1),
+(5, 11, 105.15, 2, 1),
+(6, 12, 300, 8, 1),
+(7, 13, 350, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -414,10 +461,11 @@ INSERT INTO `_order_item_` (`_oiID_`, `_si_ID_`, `_price_`, `_QTY_`, `_visible_`
 -- Table structure for table `_reason_`
 --
 
-CREATE TABLE `_reason_` (
-  `_rID_` int(11) NOT NULL,
-  `_reason_` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_reason_` (
+  `_rID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_reason_` varchar(100) NOT NULL,
+  PRIMARY KEY (`_rID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_reason_`
@@ -437,10 +485,11 @@ INSERT INTO `_reason_` (`_rID_`, `_reason_`) VALUES
 -- Table structure for table `_specs_`
 --
 
-CREATE TABLE `_specs_` (
-  `_secID_` int(11) NOT NULL,
-  `_specs_` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_specs_` (
+  `_secID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_specs_` varchar(100) NOT NULL,
+  PRIMARY KEY (`_secID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_specs_`
@@ -456,28 +505,37 @@ INSERT INTO `_specs_` (`_secID_`, `_specs_`) VALUES
 -- Table structure for table `_staff_`
 --
 
-CREATE TABLE `_staff_` (
-  `_sID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_staff_` (
+  `_sID_` int(11) NOT NULL AUTO_INCREMENT,
   `_name_id_` int(11) NOT NULL,
   `_s_name_id_` int(11) DEFAULT NULL,
   `_surname_` varchar(45) NOT NULL,
   `_email_` varchar(60) NOT NULL,
   `_title_id_` int(11) NOT NULL,
-  `_visible_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_visible_` int(11) NOT NULL,
+  PRIMARY KEY (`_sID_`),
+  KEY `_name_id_` (`_name_id_`,`_s_name_id_`,`_title_id_`),
+  KEY `_title_id_` (`_title_id_`),
+  KEY `_s_name_id_` (`_s_name_id_`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_staff_`
 --
 
 INSERT INTO `_staff_` (`_sID_`, `_name_id_`, `_s_name_id_`, `_surname_`, `_email_`, `_title_id_`, `_visible_`) VALUES
-(1, 1, 8, 'Malkowski', 'kmalkowski@kingsford.newham.sch.uk', 1, 1),
-(6, 3, 2, 'Owusu', 'knana@kingsford.newham.sch.uk', 1, 1),
-(7, 4, 8, 'Malkowski', 'kmalkowski1@kingsford.newham.sch.uk', 1, 1),
+(1, 1, 8, 'Malkowski', 'kmalkowski@kingsford.newham.sch.uk', 1, 0),
+(6, 3, 2, 'Owusu', 'knana@kingsford.newham.sch.uk', 1, 0),
+(7, 4, 8, 'Malkowski', 'kmalkowski1@kingsford.newham.sch.uk', 1, 0),
 (12, 5, 6, 'user', 'test@kingsford.newham.sch.uk', 3, 0),
 (13, 7, 10, 'West', 'dwest@kingsford.newham.sch.uk', 1, 0),
 (28, 17, 8, 'Wazny', 'mwazny@gmail.com', 6, 1),
-(29, 5, 8, 'testowy', 'testlast@gamil.com', 3, 1);
+(29, 5, 8, 'testowy', 'testlast@gamil.com', 3, 1),
+(30, 18, 8, 'admin', 'admin@admin.com', 1, 1),
+(31, 5, 6, 'unit', 'testunit@test.com', 2, 1),
+(32, 19, 20, 'Turu', 'sturu@audit.com', 7, 1),
+(33, 21, 8, 'Movat', 'smovat@audit.com', 6, 1),
+(34, 22, 23, 'Sikorsky', 'ksikorsky@audit.com', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -485,12 +543,16 @@ INSERT INTO `_staff_` (`_sID_`, `_name_id_`, `_s_name_id_`, `_surname_`, `_email
 -- Table structure for table `_supply_item_`
 --
 
-CREATE TABLE `_supply_item_` (
-  `_sp_ID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_supply_item_` (
+  `_sp_ID_` int(11) NOT NULL AUTO_INCREMENT,
   `_type_id_` int(11) NOT NULL,
   `_item_name_` varchar(30) NOT NULL,
-  `_brand_ID_` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `_brand_ID_` int(11) NOT NULL,
+  PRIMARY KEY (`_sp_ID_`),
+  KEY `_type_id_` (`_type_id_`),
+  KEY `_type_id__2` (`_type_id_`),
+  KEY `_brand_ID_` (`_brand_ID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_supply_item_`
@@ -501,7 +563,9 @@ INSERT INTO `_supply_item_` (`_sp_ID_`, `_type_id_`, `_item_name_`, `_brand_ID_`
 (8, 6, 'CF226A', 1),
 (9, 6, 'CF410A', 1),
 (10, 6, 'CF266A', 1),
-(11, 6, 'CE505A', 1);
+(11, 6, 'CE505A', 1),
+(12, 1, '350 A', 4),
+(13, 2, '350 G1', 1);
 
 -- --------------------------------------------------------
 
@@ -509,10 +573,11 @@ INSERT INTO `_supply_item_` (`_sp_ID_`, `_type_id_`, `_item_name_`, `_brand_ID_`
 -- Table structure for table `_title_`
 --
 
-CREATE TABLE `_title_` (
-  `_tID_` int(11) NOT NULL,
-  `_title_name_` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_title_` (
+  `_tID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_title_name_` varchar(25) NOT NULL,
+  PRIMARY KEY (`_tID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_title_`
@@ -523,7 +588,8 @@ INSERT INTO `_title_` (`_tID_`, `_title_name_`) VALUES
 (2, 'Maths'),
 (3, 'Test'),
 (4, 'Humans Logic'),
-(6, 'Admin');
+(6, 'Admin'),
+(7, 'Senior Administrator');
 
 -- --------------------------------------------------------
 
@@ -531,10 +597,11 @@ INSERT INTO `_title_` (`_tID_`, `_title_name_`) VALUES
 -- Table structure for table `_types_`
 --
 
-CREATE TABLE `_types_` (
-  `_tID_` int(11) NOT NULL,
-  `_type_name_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_types_` (
+  `_tID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_type_name_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_tID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_types_`
@@ -554,25 +621,26 @@ INSERT INTO `_types_` (`_tID_`, `_type_name_`) VALUES
 -- Table structure for table `_user_log_`
 --
 
-CREATE TABLE `_user_log_` (
-  `_uID_` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `_user_log_` (
+  `_uID_` int(11) NOT NULL AUTO_INCREMENT,
   `_staff_id_` int(11) NOT NULL,
   `_username_` varchar(45) NOT NULL,
   `_password_` varchar(90) NOT NULL,
   `_is_admin_` tinyint(1) NOT NULL,
   `_is_active_` tinyint(1) NOT NULL,
-  `password_change` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `password_change` int(11) NOT NULL,
+  PRIMARY KEY (`_uID_`),
+  UNIQUE KEY `_staff_id_` (`_staff_id_`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_user_log_`
 --
 
 INSERT INTO `_user_log_` (`_uID_`, `_staff_id_`, `_username_`, `_password_`, `_is_admin_`, `_is_active_`, `password_change`) VALUES
-(2, 6, 'knana', '$2y$10$JZXHjTywU4v4BRuPZxVnUuCu6/fF1t5XY/CrrwPm0nYryrXi0IlTG', 1, 1, 0),
-(4, 1, 'kmalkowski', '$2y$10$if3eUow4LrGRu/oYUawmbe93MWGfyt1vKSpBBuwedq6SIPziRjlwW', 1, 1, 0),
-(5, 13, 'dwest', '$2y$10$XLXg6j1f.sKQHhSoLmRy6.2zKnRG3YybIoqkuwQTXEsbPDU5erwZm', 0, 0, 0),
-(6, 7, 'kmalkowski1', '$2y$10$gMIwOpSUUPTY90LunMXYFegJ4INUcOxQD0c2AW8AxatrrobAI3hVC', 1, 1, 1);
+(10, 30, 'administrator', '$2y$10$W0Tgg9MlwKjYQEfKPL0no.lkNODCoy6HK89xH..Uhfrn/E2KL263u', 1, 1, 0),
+(11, 28, 'testuser', '$2y$10$vcy.zna6uGUhyQMBLtftYuk9bvoHiIHrNaZ.2py2KgPtCXOJe8Co6', 0, 1, 0),
+(12, 31, 'testunit1', '$2y$10$z1LVMRfel2Kc/iYFqAHJ7ODzQ/N24SxfTeuYdL749a0s/klWStTT6', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -580,10 +648,11 @@ INSERT INTO `_user_log_` (`_uID_`, `_staff_id_`, `_username_`, `_password_`, `_i
 -- Table structure for table `_user_type_`
 --
 
-CREATE TABLE `_user_type_` (
-  `_utID_` int(11) NOT NULL,
-  `_utype_name_` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `_user_type_` (
+  `_utID_` int(11) NOT NULL AUTO_INCREMENT,
+  `_utype_name_` varchar(30) NOT NULL,
+  PRIMARY KEY (`_utID_`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `_user_type_`
@@ -592,319 +661,6 @@ CREATE TABLE `_user_type_` (
 INSERT INTO `_user_type_` (`_utID_`, `_utype_name_`) VALUES
 (1, 'STUDENT'),
 (2, 'TEACHER');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `_brands_`
---
-ALTER TABLE `_brands_`
-  ADD PRIMARY KEY (`_bID_`);
-
---
--- Indexes for table `_chat_`
---
-ALTER TABLE `_chat_`
-  ADD PRIMARY KEY (`_cID_`),
-  ADD KEY `_uID_` (`_uID_`);
-
---
--- Indexes for table `_classes_`
---
-ALTER TABLE `_classes_`
-  ADD PRIMARY KEY (`_caID_`);
-
---
--- Indexes for table `_company_`
---
-ALTER TABLE `_company_`
-  ADD PRIMARY KEY (`_comID_`);
-
---
--- Indexes for table `_decomission_`
---
-ALTER TABLE `_decomission_`
-  ADD PRIMARY KEY (`_decID_`),
-  ADD KEY `_type_id_` (`_item_id_`),
-  ADD KEY `_dec_qty_` (`_dec_qty_`);
-
---
--- Indexes for table `_decomission_item_`
---
-ALTER TABLE `_decomission_item_`
-  ADD PRIMARY KEY (`_di_ID_`),
-  ADD UNIQUE KEY `_typy_ID_` (`_typy_ID_`,`_brand_ID_`,`_mode_id_`),
-  ADD KEY `_typy_ID__2` (`_typy_ID_`,`_brand_ID_`,`_mode_id_`),
-  ADD KEY `_brand_ID_` (`_brand_ID_`),
-  ADD KEY `_mode_id_` (`_mode_id_`);
-
---
--- Indexes for table `_decom_quantity_`
---
-ALTER TABLE `_decom_quantity_`
-  ADD PRIMARY KEY (`_dcID_`),
-  ADD KEY `_reason_id_` (`_reason_id_`),
-  ADD KEY `_type_id_` (`_decom_ID`);
-
---
--- Indexes for table `_departments_`
---
-ALTER TABLE `_departments_`
-  ADD PRIMARY KEY (`_dID_`);
-
---
--- Indexes for table `_devices_`
---
-ALTER TABLE `_devices_`
-  ADD PRIMARY KEY (`_devID_`),
-  ADD KEY `_item_id_` (`_item_id_`,`_specs_id_`),
-  ADD KEY `_specs_id_` (`_specs_id_`),
-  ADD KEY `_classes_id_` (`_classes_id_`),
-  ADD KEY `_faculty_id_` (`_faculty_id_`),
-  ADD KEY `_ut_id_` (`_ut_id_`);
-
---
--- Indexes for table `_devices_names_`
---
-ALTER TABLE `_devices_names_`
-  ADD PRIMARY KEY (`_dn_ID_`),
-  ADD KEY `_devID_` (`_devID_`),
-  ADD KEY `_userID_` (`_userID_`),
-  ADD KEY `_facID_` (`_facID_`),
-  ADD KEY `_locID_` (`_locID_`);
-
---
--- Indexes for table `_faculty_`
---
-ALTER TABLE `_faculty_`
-  ADD PRIMARY KEY (`_facID_`);
-
---
--- Indexes for table `_model_`
---
-ALTER TABLE `_model_`
-  ADD PRIMARY KEY (`_mID_`);
-
---
--- Indexes for table `_name_`
---
-ALTER TABLE `_name_`
-  ADD PRIMARY KEY (`_nID_`);
-
---
--- Indexes for table `_orders_`
---
-ALTER TABLE `_orders_`
-  ADD PRIMARY KEY (`_oID_`),
-  ADD KEY `_staff_id_` (`_staff_id_`),
-  ADD KEY `_item_id_` (`_item_id_`),
-  ADD KEY `_dep_id_` (`_dep_id_`);
-
---
--- Indexes for table `_order_item_`
---
-ALTER TABLE `_order_item_`
-  ADD PRIMARY KEY (`_oiID_`),
-  ADD KEY `_type_ID_` (`_si_ID_`);
-
---
--- Indexes for table `_reason_`
---
-ALTER TABLE `_reason_`
-  ADD PRIMARY KEY (`_rID_`);
-
---
--- Indexes for table `_specs_`
---
-ALTER TABLE `_specs_`
-  ADD PRIMARY KEY (`_secID_`);
-
---
--- Indexes for table `_staff_`
---
-ALTER TABLE `_staff_`
-  ADD PRIMARY KEY (`_sID_`),
-  ADD KEY `_name_id_` (`_name_id_`,`_s_name_id_`,`_title_id_`),
-  ADD KEY `_title_id_` (`_title_id_`),
-  ADD KEY `_s_name_id_` (`_s_name_id_`);
-
---
--- Indexes for table `_supply_item_`
---
-ALTER TABLE `_supply_item_`
-  ADD PRIMARY KEY (`_sp_ID_`),
-  ADD KEY `_type_id_` (`_type_id_`),
-  ADD KEY `_type_id__2` (`_type_id_`),
-  ADD KEY `_brand_ID_` (`_brand_ID_`);
-
---
--- Indexes for table `_title_`
---
-ALTER TABLE `_title_`
-  ADD PRIMARY KEY (`_tID_`);
-
---
--- Indexes for table `_types_`
---
-ALTER TABLE `_types_`
-  ADD PRIMARY KEY (`_tID_`);
-
---
--- Indexes for table `_user_log_`
---
-ALTER TABLE `_user_log_`
-  ADD PRIMARY KEY (`_uID_`),
-  ADD UNIQUE KEY `_staff_id_` (`_staff_id_`);
-
---
--- Indexes for table `_user_type_`
---
-ALTER TABLE `_user_type_`
-  ADD PRIMARY KEY (`_utID_`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `_brands_`
---
-ALTER TABLE `_brands_`
-  MODIFY `_bID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `_chat_`
---
-ALTER TABLE `_chat_`
-  MODIFY `_cID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `_classes_`
---
-ALTER TABLE `_classes_`
-  MODIFY `_caID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `_company_`
---
-ALTER TABLE `_company_`
-  MODIFY `_comID_` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `_decomission_`
---
-ALTER TABLE `_decomission_`
-  MODIFY `_decID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `_decomission_item_`
---
-ALTER TABLE `_decomission_item_`
-  MODIFY `_di_ID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `_decom_quantity_`
---
-ALTER TABLE `_decom_quantity_`
-  MODIFY `_dcID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `_departments_`
---
-ALTER TABLE `_departments_`
-  MODIFY `_dID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `_devices_`
---
-ALTER TABLE `_devices_`
-  MODIFY `_devID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
-
---
--- AUTO_INCREMENT for table `_devices_names_`
---
-ALTER TABLE `_devices_names_`
-  MODIFY `_dn_ID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
-
---
--- AUTO_INCREMENT for table `_faculty_`
---
-ALTER TABLE `_faculty_`
-  MODIFY `_facID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `_model_`
---
-ALTER TABLE `_model_`
-  MODIFY `_mID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `_name_`
---
-ALTER TABLE `_name_`
-  MODIFY `_nID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `_orders_`
---
-ALTER TABLE `_orders_`
-  MODIFY `_oID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `_order_item_`
---
-ALTER TABLE `_order_item_`
-  MODIFY `_oiID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `_reason_`
---
-ALTER TABLE `_reason_`
-  MODIFY `_rID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `_specs_`
---
-ALTER TABLE `_specs_`
-  MODIFY `_secID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `_staff_`
---
-ALTER TABLE `_staff_`
-  MODIFY `_sID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `_supply_item_`
---
-ALTER TABLE `_supply_item_`
-  MODIFY `_sp_ID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `_title_`
---
-ALTER TABLE `_title_`
-  MODIFY `_tID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `_types_`
---
-ALTER TABLE `_types_`
-  MODIFY `_tID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `_user_log_`
---
-ALTER TABLE `_user_log_`
-  MODIFY `_uID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `_user_type_`
---
-ALTER TABLE `_user_type_`
-  MODIFY `_utID_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

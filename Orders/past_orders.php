@@ -438,12 +438,12 @@ if(isset($_GET['uid']) && !empty($_SESSION['login'])){
 <script>
     function myEdit(input){
         
-        window.location = "http://"+window.location.hostname+"/Orders/past_orders.php?uid="+input+"";
+        window.location = "http://localhost/AdminAudit/Orders/past_orders.php?uid="+input+"";
     }
     function myRemove(input){
         if (confirm('Do you really want to remove pricing?')) {
       // Save it!
-            window.location = "http://"+window.location.hostname+"/Orders/past_orders.php?rid="+input+"";
+            window.location = "http://localhost/AdminAudit/Orders/past_orders.php?rid="+input+"";
         }else{
             
         }
